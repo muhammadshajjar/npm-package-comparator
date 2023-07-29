@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import Comparison from "./components/Comparison";
 import Recommender from "./components/Recommender";
 import { Alert } from "antd";
+import { animate, motion } from "framer-motion";
 
 import {
   transformApiResponse,
@@ -64,15 +65,25 @@ const App = () => {
     <div className="container">
       <h1>NPM Package Comparator</h1>
       <Search onComparePackage={onComparePackagesHandler} />
-
       {comparators.length > 0 && (
         <>
           <Comparison comparators={comparators} />
-          <h2>Downloads</h2>
-          <Downloads comparators={comparators} />
-
-          <h2>Recommendation</h2>
-          <Recommender recommendation={recommendation} />
+          <motion.div
+            initial={{ opacity: 0, x: -1000 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, type: "tween" }}
+          >
+            <h2>Downloads</h2>
+            <Downloads comparators={comparators} />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -1000 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, type: "tween", delay: 5 }}
+          >
+            <h2>Recommendation</h2>
+            <Recommender recommendation={recommendation} />
+          </motion.div>
         </>
       )}
       {showAlert && (

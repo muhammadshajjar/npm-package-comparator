@@ -14,6 +14,13 @@ const Downloads = ({ comparators }) => {
     legend: {
       position: "top",
     },
+    smooth: true,
+    animation: {
+      appear: {
+        animation: "path-in",
+        duration: 5000,
+      },
+    },
   };
   return <Line {...config} />;
 };

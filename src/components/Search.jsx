@@ -4,7 +4,7 @@ import debounce from "lodash.debounce";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { Row, Alert } from "antd";
-
+import { motion } from "framer-motion";
 const Search = ({ onComparePackage }) => {
   const [packageSuggestions, setPackageSuggestions] = useState([]);
   const [isShown, setIsShown] = useState(false);
@@ -74,10 +74,11 @@ const Search = ({ onComparePackage }) => {
         open={isShown}
         onBlur={() => setIsShown(false)}
       ></AutoComplete>
-
-      <Button type="primary" onClick={packageCompareHandler}>
-        Compare
-      </Button>
+      <motion.div whileHover={{ scale: 1.1 }}>
+        <Button type="primary" onClick={packageCompareHandler}>
+          Compare
+        </Button>
+      </motion.div>
       {selectedPackages.map((pkg) => (
         <Tag
           key={pkg.id}
