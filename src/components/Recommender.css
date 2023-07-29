@@ -1,0 +1,26 @@
+.results {
+  border: 2px solid #91e7c5;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 20px;
+  box-shadow: #91e7c597 0px 4px 12px;
+}
+.results-description {
+  border: 2px solid #91e7c5;
+  border-radius: 10px;
+  padding: 30px;
+}
+.description-title {
+  font-size: 24px;
+}
+.description-title span {
+  color: #588cfc;
+}
+.cards {
+  border: 1px solid #91e7c5;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: #91e7c597 0px 1px 10px;
+}

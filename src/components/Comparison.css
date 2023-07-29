@@ -1,0 +1,30 @@
+.table-container {
+  overflow: scroll;
+  margin: 50px 0;
+}
+table {
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  overflow: scroll;
+  text-align: center;
+}
+
+table th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+table td {
+  width: 50%;
+}
+
+.tabledata {
+  width: 50%;
+}
+
+.links div {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
