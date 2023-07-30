@@ -3,7 +3,7 @@ import { AutoComplete, Button, Input, Tag } from "antd";
 import debounce from "lodash.debounce";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import { Row, Alert } from "antd";
+import { Row, Col, Alert } from "antd";
 import { motion } from "framer-motion";
 const Search = ({ onComparePackage }) => {
   const [packageSuggestions, setPackageSuggestions] = useState([]);
@@ -61,46 +61,56 @@ const Search = ({ onComparePackage }) => {
   };
 
   return (
-    <Row justify="center" align="middle">
-      <AutoComplete
-        style={{
-          width: 400,
-        }}
-        options={packageSuggestions}
-        onSelect={onSelect}
-        onSearch={debounceInput}
-        notFoundContent="Not Found!"
-        placeholder="Enter Package Name"
-        open={isShown}
-        onBlur={() => setIsShown(false)}
-      ></AutoComplete>
-      <motion.div whileHover={{ scale: 1.1 }}>
-        <Button type="primary" onClick={packageCompareHandler}>
-          Compare
-        </Button>
-      </motion.div>
-      {selectedPackages.map((pkg) => (
-        <Tag
-          key={pkg.id}
-          bordered={false}
-          closable
-          onClose={removeTagHandler.bind(this, pkg.id)}
-        >
-          {pkg.name}
-        </Tag>
-      ))}
-      {showAlert && (
-        <Alert
-          message="Warning"
-          description="You can Select only two packages for Comparison"
-          type="warning"
-          showIcon
-          closable
-          onClose={() => setShowAlert(false)}
-          style={{ position: "absolute", bottom: "50px", right: "50px" }}
-        />
-      )}
-    </Row>
+    <>
+      <Row>
+        <Col span={24}>
+          <Row justify="center">
+            {selectedPackages.map((pkg) => (
+              <Tag
+                key={pkg.id}
+                bordered={false}
+                closable
+                onClose={removeTagHandler.bind(this, pkg.id)}
+              >
+                {pkg.name}
+              </Tag>
+            ))}
+          </Row>
+        </Col>
+        <Col span={24}>
+          <Row justify="center">
+            <AutoComplete
+              style={{
+                width: 350,
+              }}
+              options={packageSuggestions}
+              onSelect={onSelect}
+              onSearch={debounceInput}
+              notFoundContent="Not Found!"
+              placeholder="Enter Package Name"
+              open={isShown}
+              onBlur={() => setIsShown(false)}
+            ></AutoComplete>
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <Button type="primary" onClick={packageCompareHandler}>
+                Compare
+              </Button>
+            </motion.div>
+          </Row>
+        </Col>
+        {showAlert && (
+          <Alert
+            message="Warning"
+            description="You can Select only two packages for Comparison"
+            type="warning"
+            showIcon
+            closable
+            onClose={() => setShowAlert(false)}
+            style={{ position: "absolute", bottom: "50px", right: "50px" }}
+          />
+        )}
+      </Row>
+    </>
   );
 };
 export default Search;
